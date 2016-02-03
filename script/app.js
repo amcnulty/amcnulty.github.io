@@ -29,7 +29,7 @@ window.onload = function() {
         if (e.clientY + document.body.scrollTop <= 2268) {
             map.className = "scrollOff";
         }
-        else if (e.clientY + document.body.scrollTop >= 2406) {
+        else if (e.clientY + document.body.scrollTop >= 2969) {
             map.className = "scrollOff";
         }
         else if (e.clientX <= window.innerWidth * .1) {
