@@ -306,6 +306,19 @@ nav div:hover {
 }
 
 @media (max-width: 1000px) {
+    #landing {
+        position: relative;
+        height: 600px;
+        width: 100%;
+        background: url("../res/backgrounds/background.jpeg") center center;
+        background-size: contain;
+        background-attachment: fixed;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(225, 225, 225, .2)), to(rgba(102, 102, 102, .2))), url("../res/backgrounds/background.jpeg");
+        background-image: -webkit-linear-gradient(top, rgba(225, 225, 225, .2), rgba(102, 102, 102, .2)), url("../res/backgrounds/background.jpeg");
+        background-image: -moz-linear-gradient(top, rgba(225, 225, 225, .2), rgba(102, 102, 102, .2)), url("../res/backgrounds/background.jpeg");
+        background-image: linear-gradient(to bottom, rgba(225, 225, 225, .2), rgba(102, 102, 102, .2)), url("../res/backgrounds/background.jpeg");
+    }
+    
     #locationsContain {
         height: 600px;
         width: 100%;
