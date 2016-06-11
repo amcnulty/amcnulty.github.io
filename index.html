@@ -1,239 +1,52 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="icon" href="res/icon/logo.ico" type="image/x-icon">
-        <title>The Contractors Garage | Industrial Storage Space</title>
-        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-        <meta name="description" content="The Contractor's Garage offers large usable industrial 
-            storage space in the heart of Johnson County Kansas designed exclusively for entrepreneurs
-             and hobbyists including but not limited to landscapers, plumbers, electricians, specialty 
-             vehicles, or about anyone needing something larger than mini storage but smaller and less 
-             expensive than traditional incubator industrial space.">
-        <meta name="author" content="Aaron Michael McNulty">
-        <link rel="stylesheet" type="text/css" href="style/style.css">
-        <script type="text/javascript">
-            function initMap() {
-                // The map starting location and zoom level
-                var map;
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: 38.9175412, lng: -94.7569592},
-                    zoom: 12
-                });
-                // The different map markers
-                var redMarker = "res/icon/redMarker.png";
-                var purpleMarker = "res/icon/purpleMarker.png";
-                var greenMarker = "res/icon/greenMarker.png";
-                // Marker for the dennis street location
-                var dennisMarker = new google.maps.Marker({
-                    position: {lat: 38.869868, lng: -94.8126852},
-                    map: map,
-                    title: "636 E Dennis Ave, Olathe, KS",
-                    icon: redMarker
-                });
-                // Info box about the dennis street location
-                var dennisInfoWindow = new google.maps.InfoWindow({
-                    content: "<h3>Garage I</h3>"+
-                            "<p>636 E Dennis Ave, Olathe, KS</p>"+
-                            "<a href='html/dennisOlathe.html'><img src='res/images/dennisOlathe/small.jpeg' alt='Dennis Olathe Location'></a><br>"+
-                            "<a href='html/dennisOlathe.html'>Learn More About This Location</a>"
-                });
-                dennisMarker.addListener("click", function(){
-                    dennisInfoWindow.open(map, dennisMarker);
-                });
-                // Marker for 169 Highway Location
-                var hwyMarker = new google.maps.Marker({
-                    position: {lat: 38.8424099, lng: -94.8139672},
-                    map: map,
-                    title: "15735 S US169 Highway, Olathe, KS",
-                    icon: redMarker
-                });
-                // Info box about 169 hwy location
-                var hwyInfoWindow = new google.maps.InfoWindow({
-                    content: "<h3>Garage II</h3>"+
-                            "<p>15735 S US169 Highway, Olathe, KS</p>"+
-                            "<a href='html/169hwyOlathe.html'><img src='res/images/169hwyOlathe/small.jpeg' alt='169 hwy Olathe Location'></a><br>"+
-                            "<a href='html/169hwyOlathe.html'>Learn More About This Location</a>"
-                });
-                hwyMarker.addListener("click", function(){
-                    hwyInfoWindow.open(map, hwyMarker);
-                });
-                // Marker for the Lenexa location
-                var lenexaMarker = new google.maps.Marker({
-                    position: {lat: 38.952483, lng: -94.749759},
-                    map: map,
-                    title: "14100 Santa Fe Trail Dr., Lenexa, KS",
-                    icon: redMarker
-                });
-                // Info bow about Lenxa location
-                var lenexaInfoWindow = new google.maps.InfoWindow({
-                    content: "<h3>Garage III</h3>"+
-                            "<p>14100 Santa Fe Trail Dr., Lenexa, KS</p>"+
-                            "<a href='html/lenexa.html'><img src='res/images/lenexa/small.jpeg' alt='Lenexa Location'></a><br>"+
-                            "<a href='html/lenexa.html'>Learn More About This Location</a>"
-                });
-                lenexaMarker.addListener("click", function(){
-                    lenexaInfoWindow.open(map, lenexaMarker);
-                });
-                // Marker for Overland Park location
-                var OPMarker = new google.maps.Marker({
-                    position: {lat: 38.898784, lng: -94.6836929},
-                    map: map,
-                    title: "8400 W 127th St, Overland Park, KS",
-                    icon: purpleMarker
-                });
-                // Info box about Overland Park location
-                var OPInfoWindow = new google.maps.InfoWindow({
-                    content: "<h3>Garage IV (Currently Under Construction)</h3>"+
-                            "<p>8400 W 127th St, Overland Park, KS</p>"+
-                            "<a href='html/overlandPark.html'><img src='res/images/overlandPark/small.jpeg' alt='Overland Park Location'></a><br>"+
-                            "<a href='html/overlandPark.html'>Learn More About This Location</a>"
-                });
-                OPMarker.addListener("click", function(){
-                    OPInfoWindow.open(map, OPMarker);
-                });
-                // Marker for the Mahaffie location
-                var mahaffieMarker = new google.maps.Marker({
-                    position: {lat: 38.840675, lng: -94.8025281},
-                    map: map,
-                    title: "15845 S Mahaffie St, Olathe, KS",
-                    icon: greenMarker 
-                });
-                // Info box about the Mahaffie location
-                var mahaffieInfoWindow = new google.maps.InfoWindow({
-                    content: "<h3>Planned Future Location</h3>"+
-                            "<p>15845 S Mahaffie St, Olathe, KS</p>"+
-                            "<p>Anticipated completion summer 2017.  Units will be 20'x50' (1000 sq. ft.) "+
-                             "with a store front and rear loading, bathroom and hvac in each unit.</p>"
-                });
-                mahaffieMarker.addListener("click", function(){
-                   mahaffieInfoWindow.open(map, mahaffieMarker); 
-                });
-            }
-        </script>
+        <link rel="icon" type="image/x-icon" href="res/icon/favicon.ico">
+        <title>Last Look Sports | Welcome!</title>
+        <meta name="description" content="This is a description of Last Look Sports">
+        <meta http-equiv="content-language" content="en">
+        <meta charset="UTF-8">
+        <meta name="author" content="GradSpecs LLC">
+        <link rel="stylesheet" type="text/css" href="style/login.css">
     </head>
     <body>
-        <div id="header">
-            <div id="headerLeft">
-                <img  id="headerLogoImg" src="res/logo/logo.png" alt="Contractors Garage Logo">
-                <a id="phoneNumber" href="tel:913-568-1134">Give Us A Call - 913-568-1134</a>
-            </div>
-            <div id="headerRight">
-                <div id="companySloganContain">
-                    <p id="companySlogan">
-                        "Johnson County Industrial Storage"
-                    </p>
-                </div>
-                <nav>
-                    <div id="homeNavButton">
-                        <a>HOME</a>
-                    </div>
-                    <div id="aboutNavButton">
-                        <a>ABOUT US</a>
-                    </div>
-                    <div id="locationsNavButton">
-                        <a>LOCATIONS</a>
-                    </div>
-                </nav>
-            </div>
-            <div id="headerBottom">
-            </div>
+        <div class="hidden" id="signInOverlay">
+            <h3>Email:</h3>
+            <input type="email" id="email">
+            <h3>Password:</h3>
+            <input type="password" id="password"><br><br>
+            <a href="#" id="forgotPassword">Forgot Password</a>
+            <div id="logInButton">LOG IN</div>
         </div>
-        <div id="landing">
-            <div id="landingRight">
-                <img src="res/logo/custom.png" alt="Contractor's garage fancy text">
+        <div id="topBar">
+            <div id="left">
+                <div class="leftTab" id="about"><p class="headerLink">About</p></div>
+                <div class="leftTab" id="contact"><p class="headerLink">Contact</p></div>
+                <div class="leftTab" id="pricing"><p class="headerLink">Pricing</p></div>
             </div>
-        </div>
-        <div id="info">
-            <h2 id="aboutHeader">About Us</h2>
-            <div id="aboutLeft">
-                <p id="aboutUs">
-                    The Contractor's Garage offers large usable industrial storage space in the heart of Johnson County Kansas designed exclusively for entrepreneurs and hobbyists including but not limited to landscapers, plumbers, electricians, specialty vehicles, or about anyone needing something larger than mini storage but smaller and less expensive than traditional incubator industrial space.<br><br>
-                    We currently have three locations and a fourth being built. All of our units have large drive-in doors and are very spacious. Unlike personal storage spaces, our units are built with the contractor in mind!<br><br>
-                    Developed, owned-in-part, and leased by:<br>
-                    Kevin Combs, CCIM - Commercial/Industrial Real Estate Broker and Developer.<br>
-                    <a href="http://www.insightcommercial.net/"><img src="res/logo/insightLogo.png" alt="Insight Commercial Logo"></a><br>
-                    <a class="gold" href="mailto:kcombs@insightcommercial.net">Email Us</a><br>
-                    <a class="gold" href="http://www.insightcommercial.net/">Insight Commercial Webpage</a>
-                </p>
-            </div>
-            <div id="aboutRight">
-                <img class="beforeChange" id="grassPic" src="res/images/grass.jpeg" alt="Storage unit with grass on property">
-            </div>
-        </div>
-        <div id="space">
-        </div>
-        <div id="mapSection">
-            <div id="borderEffect">
-                <img id="leftCornerEffect" src="res/effects/cornerLeft.png">
-                <img id="rightCornerEffect" src="res/effects/cornerRight.png">
-            </div>
-            <h1 id="mapSectionHeader">Our Locations</h1>
-            <div id="locationsContain">
-                <div id="dennisOlathe">
-                    <div id="dennisInner">
-                        <h3>Garage I</h3>
-                        <div class="locationsLink">
-                            <a href="html/dennisOlathe.html">636 E Dennis Ave, Olathe, KS</a>
+            <div id="right">
+                <div class="rightTab" id="signIn"><p class="headerLink">Sign In</p></div>
+                <div class="rightTab" id="signUp">
+                    <p class="headerLink">Sign Up</p>
+                    <div class="hidden" id="signUpDropDown">
+                        <div class="cell" id="SUleft">
+                            Coach
                         </div>
-                        <img id="dPic" class="locationPic" src="res/images/dennisOlathe/small.jpeg" alt="Dennis Olathe Location">
-                    </div>
-                </div>
-                <div id="olathe169hwy">
-                    <div id="olathe169Inner">
-                        <h3>Garage II</h3>
-                        <div class="locationsLink">
-                            <a href="html/169hwyOlathe.html">15735 S US169 Highway, Olathe, KS</a>
+                        <div class="cell" id="SUright">
+                            Player
                         </div>
-                        <img id="Pic1" class="locationPic" src="res/images/169hwyOlathe/small.jpeg" alt="169 highway Location">
                     </div>
                 </div>
-                <div id="lenexa">
-                    <div id="lenexaInner">
-                        <h3>Garage III</h3>
-                        <div class="locationsLink">
-                            <a href="html/lenexa.html">14100 Santa Fe Trail Dr., Lenexa, KS</a>
-                        </div>
-                        <img id="lPic" class="locationPic" src="res/images/lenexa/small.jpeg" alt="Lenexa Location">
-                    </div>
-                </div>
-                <div id="overlandPark">
-                    <div id="overlandInner">
-                        <h3>Garage IV</h3>
-                        <div class="locationsLink">
-                            <a href="html/overlandPark.html">8400 W 127th St, Overland Park, KS</a>
-                        </div>
-                        <img id="oPic" class="locationPic" src="res/images/overlandPark/small.jpeg" alt="overland park location">
-                    </div>
-                </div>
-            </div>
-            <div id="mapInstructions">
-                <div id="mapKey">
-                    <h2>Map Key</h2>
-                    <img src="res/icon/redMarker.png" alt="Red Map Marker">
-                    <h3 style="display: inline">- Curently Open</h3><br><br>
-                    <img src="res/icon/purpleMarker.png" alt="Purple Map Marker">
-                    <h3 style="display: inline">- Under Construction</h3><br><br>
-                    <img src="res/icon/greenMarker.png" alt="Green Map Marker">
-                    <h3 style="display: inline">- Future Location</h3>
-                </div>
-                <h4>Click on map to activate</h4>
-            </div>
-            <div id="mapCanvas">
-                <div class="scrollOff" id="map"></div>
             </div>
         </div>
-        <div id="footer">
-            <div id="footerTop">
-                <p>Content copyright &copy2016. The Contractors Garage - Contact: Kevin Combs - (913) 568-1134. All rights reserved.</p>
-            </div>
-            <div id="footerBottom">
-                <img src="res/logo/insightLogo.png" alt="Insight Commercial Logo"><br>
-                <a href="mailto:kcombs@insightcommercial.net">Email Us</a><br>
-                <a href="http://www.insightcommercial.net/">Insight Commercial Webpage</a>
+        <div id="bottom">
+            <img id="banner" src="res/logos/banner.png">
+            <div id="links">
+                <a href="#">Private Policy</a>
+                <a id="terms" href="#">Terms and Conditions</a>
+                <a href="#">Software Licence Agreement</a>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <script src="script/app.js" type="text/javascript"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+        <script type="text/javascript" src="script/login.js"></script>
     </body>
 </html>
