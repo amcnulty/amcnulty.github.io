@@ -15,19 +15,24 @@ html, body {
 
 #header {
     width: 100%;
-    height: 160px;
+    height: 240px;
 }
 
 #headerTop {
     width: 100%;
-    height: 50%;
+    height: 160px;
     text-align: center;
-    background: url("../res/logo/companyName1.png") center center no-repeat;
+    background: url("../res/logo/companyNameMobile.png") center center no-repeat;
+}
+
+#companyName2 {
+    position: relative;
+    top: 30px;
 }
 
 #headerBottom {
     width: 100%;
-    height: 50%;
+    height: 80px;
     text-align: center;
     border-bottom: 2px solid #E0162B;
 }
@@ -37,10 +42,8 @@ html, body {
     height: 80px;
 }
 
-.top a, .scroll a {
-    position: relative;
-    top: -30px;
-    text-decoration: none;
+.top img {
+    height: 60px;
 }
 
 .scroll {
@@ -60,16 +63,16 @@ html, body {
 
 .headerImageDiv {
     display: inline-block;
-    width: 399px;
-    height: 80px;
-    background: url("../res/logo/companyName2.png") center center no-repeat;
+    width: 40px;
+    height: 40px;
+    background: url("../res/logo/companyStarSmall.png") center center no-repeat;
 }
 
 .headerImageDiv-scroll {
     display: inline-block;
-    width: 80px;
-    height: 80px;
-    background: url("../res/logo/companyStar.png") center center no-repeat;
+    width: 40px;
+    height: 40px;
+    background: url("../res/logo/companyStarSmall.png") center center no-repeat;
     -webkit-transition: all 1.2s ease;
     -moz-transition: all 1.2s ease;
     -ms-transition: all 1.2s ease;
@@ -80,11 +83,13 @@ html, body {
 .navButton {
     display: inline-block;
     position: relative;
-    width: 120px;
+    top: 15px;
+    width: 100px;
     height: 50%;
     border: 4px solid #0052A5;
     border-radius: 4px;
     line-height: 40px;
+    font-size: .8em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #0052A5;
@@ -105,19 +110,21 @@ html, body {
 .navButton-scroll {
     display: inline-block;
     position: relative;
-    width: 120px;
+    top: 15px;
+    width: 100px;
     height: 50%;
     border: 4px solid #0052A5;
     border-radius: 4px;
     line-height: 40px;
+    font-size: .8em;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     color: #0052A5;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
+    -webkit-transition: all 1.2s ease;
+    -moz-transition: all 1.2s ease;
+    -ms-transition: all 1.2s ease;
+    -o-transition: all 1.2s ease;
+    transition: all 1.2s ease;
 }
 
 .navButton-scroll:hover {
@@ -133,7 +140,7 @@ html, body {
 }
 
 #construction {
-    font-size: .8em;
+    font-size: .7em;
 }
 
 #backToTopButton {
@@ -194,15 +201,13 @@ html, body {
 }
 
 #sliderImages {
-    width: 100%;
+    display: inline-block;
+    width: 867px;
     height: 650px;
 }
 
-#sliderImages div {
+#sliderImages img {
     position: absolute;
-    width: 867px;
-    height: 650px;
-    left: 50%;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -311,14 +316,14 @@ html, body {
     height: 520px;
     top: 30px;
     left: 50%;
-    -webkit-transform: translateX(-525px);
-    -moz-transform: translateX(-525px);
-    -ms-transform: translateX(-525px);
-    -o-transform: translateX(-525px);
-    transform: translateX(-525px);
+    -webkit-transform: translate(-148%, 0);
+    -moz-transform: translate(-148%, 0);
+    -ms-transform: translate(-148%, 0);
+    -o-transform: translate(-148%, 0);
+    transform: translate(-148%, 0);
     background: url("../res/background/paper1.jpg") center center no-repeat;
     z-index: 2;
-    cursor: move;
+    cursor: -webkit-grab;
     -webkit-box-shadow: 3px 3px 5px 7px #222222;
     -moz-box-shadow: 3px 3px 5px 7px #222222;
     -ms-box-shadow: 3px 3px 5px 7px #222222;
@@ -359,14 +364,14 @@ html, body {
     height: 520px;
     top: 50px;
     left: 50%;
-    -webkit-transform: translateX(-175px);
-    -moz-transform: translateX(-175px);
-    -ms-transform: translateX(-175px);
-    -o-transform: translateX(-175px);
-    transform: translateX(-175px);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
     background: url("../res/background/paper2.jpg") center center no-repeat;
     z-index: 1;
-    cursor: move;
+    cursor: -webkit-grab;
     -webkit-box-shadow: 3px 3px 5px 7px #222222;
     -moz-box-shadow: 3px 3px 5px 7px #222222;
     -ms-box-shadow: 3px 3px 5px 7px #222222;
@@ -375,7 +380,7 @@ html, body {
 }
 
 #CPheader {
-    margin-left: 30px;
+    margin-left: 40px;
     width: 60%;
     cursor: default;
 }
@@ -407,14 +412,14 @@ html, body {
     height: 520px;
     top: 70px;
     left: 50%;
-    -webkit-transform: translateX(175px);
-    -moz-transform: translateX(175px);
-    -ms-transform: translateX(175px);
-    -o-transform: translateX(175px);
-    transform: translateX(175px);
+    -webkit-transform: translate(50%, 0);
+    -moz-transform: translate(50%, 0);
+    -ms-transform: translate(50%, 0);
+    -o-transform: translate(50%, 0);
+    transform: translate(50%, 0);
     background: url("../res/background/paper3.jpg") center center no-repeat;
     z-index: 0;
-    cursor: move;
+    cursor: -webkit-grab;
     -webkit-box-shadow: 3px 3px 5px 7px #222222;
     -moz-box-shadow: 3px 3px 5px 7px #222222;
     -ms-box-shadow: 3px 3px 5px 7px #222222;
@@ -423,7 +428,7 @@ html, body {
 }
 
 #lawnheader {
-    margin-left: 30px;
+    margin-left: 40px;
     width: 60%;
     cursor: default;
 }
@@ -448,155 +453,12 @@ html, body {
     cursor: default;
 }
 
-#paymentSection {
-    position: relative;
-    top: -40px;
-    margin-bottom: -40px;
-    width: 100%;
-    height: 540px;
-    z-index: 3;
-}
-
-#paymentTop {
-    width: 100%;
-    height: 40px;
-    float: left;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(245,245,245, 0)),rgba(245,245,245 1) color));
-    background-image: -webkit-linear-gradient(top, rgba(245,245,245, 0), rgba(245,245,245, 1));
-    background-image: -moz-linear-gradient(top, rgba(245,245,245, 0), rgba(245,245,245, 1));
-    background-image: linear-gradient(to bottom, rgba(245,245,245, 0), rgba(245,245,245, 1));
-}
-
-#paymentLeft {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width: 50%;
-    height: 100%;
-    float: left;
-    background-color: whitesmoke;
-}
-
-#PLWrapper {
-    position: relative;
-    top: 50%;
-    width: 100%;
-    -webkit-transform: translate(0%, -50%);
-    -moz-transform: translate(0%, -50%);
-    -ms-transform: translate(0%, -50%);
-    -o-transform: translate(0%, -50%);
-    transform: translate(0%, -50%);
-}
-
-#paymentLeft h3, #paymentLeft h1 {
-    color: #0052A5;
-    margin-left: 40px;
-    margin-right: 40px;
-}
-
-#paymentLeft p, #paymentLeft ul {
-    color: #222222;
-    margin-left: 90px;
-    margin-right: 60px;
-}
-
-#paymentRight {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black;
-    width: 50%;
-    height: 100%;
-    float: left;
-    background-color: whitesmoke;
-}
-
-#paymentRight h3, #paymentRight p {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-#payBoxShadow {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 50%;
-    box-shadow: 4px 4px 4px 4px #0052A5;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-#paypalform {
-    width: 100%;
-    height: 87px;
-}
-
-#payButWrap {
-    position: relative;
-    width: 158px;
-    height: 68px;
-    left: 50%;
-    top: 10%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-
-#payButWrap input {
-    position: absolute;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
-}
-
-#payButWrap > input:nth-child(1) {
-    opacity: 1;
-    z-index: 2;
-}
-
-#payButWrap > input::nth-child(2) {
-    opacity: 0;
-    z-index: 1;
-}
-
-#payButWrap:hover > input:nth-child(1) {
-    opacity: 0;
-    z-index: 1;
-}
-
-#payButWrap:hover > input::nth-child(2) {
-    opacity: 1;
-    z-index: 2;
-}
-
-#cardImage {
-    position: relative;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-
-#anchorWrap {
-    text-align: center;
-    height: 0px;
-}
-
 #landscapeSection {
+    position: relative;
     width: 100%;
     height: 500px;
-    background-color: whitesmoke;
-}
-
-#landscapeSection h1 {
-    margin: 0px;
+    z-index: 3;
+    background-color: white;
 }
 
 #LStitle {
@@ -623,7 +485,7 @@ html, body {
 
 #LSright p {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 20px;
     margin-right: 20px;
@@ -633,14 +495,10 @@ html, body {
 #constructionSection {
     width: 100%;
     height: 500px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(245, 245, 245, 1)), to(#0052A5));
-    background-image: -webkit-linear-gradient(top, rgba(245, 245, 245, 1), #0052A5);
-    background-image: -moz-linear-gradient(top, rgba(245, 245, 245, 1), #0052A5);
-    background-image: linear-gradient(to bottom, rgba(245, 245, 245, 1), #0052A5);
-}
-
-#constructionSection h1 {
-    margin: 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#0052A5));
+    background-image: -webkit-linear-gradient(top, white, #0052A5);
+    background-image: -moz-linear-gradient(top, white, #0052A5);
+    background-image: linear-gradient(to bottom, white, #0052A5);
 }
 
 #CStitle {
@@ -667,7 +525,7 @@ html, body {
 
 #CSright p {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 20px;
     margin-right: 20px;
@@ -677,21 +535,17 @@ html, body {
 #spaceForLawn {
     width: 100%;
     height: 200px;
-    background: url("../res/background/house.jpg") center center no-repeat;
-    background-attachment: fixed;
+    background: url("../res/background/tools.jpg") top no-repeat;
+    background-size: 100%;
 }
 
 #lawnCareSection {
     width: 100%;
     height: 500px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(245, 245, 245, 1)), to(#E0162B));
-    background-image: -webkit-linear-gradient(top, rgba(245, 245, 245, 1), #E0162B);
-    background-image: -moz-linear-gradient(top, rgba(245, 245, 245, 1), #E0162B);
-    background-image: linear-gradient(to bottom, rgba(245, 245, 245, 1), #E0162B);
-}
-
-#lawnCareSection h1 {
-    margin: 0px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#E0162B));
+    background-image: -webkit-linear-gradient(top, white, #E0162B);
+    background-image: -moz-linear-gradient(top, white, #E0162B);
+    background-image: linear-gradient(to bottom, white, #E0162B);
 }
 
 #Ltitle {
@@ -718,7 +572,7 @@ html, body {
 
 #Lright p {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 20px;
     margin-right: 20px;
@@ -729,7 +583,7 @@ html, body {
     width: 100%;
     height: 200px;
     background: url("../res/background/lawn.jpg") center center no-repeat;
-    background-attachment: fixed;
+    background-size: 100%;
 }
 
 #footer {

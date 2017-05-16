@@ -1,314 +1,329 @@
-if (window.attachEvent) {window.attachEvent('onload', load);}
-else if (window.addEventListener) {window.addEventListener('load', load, false);}
-else {document.addEventListener('load', load, false);}
-function load() {
-            // CONSTRUCTORS
-    // Constructor for the panel object in the player profile page
-    // The tab is what the user clicks on and the content is shown
-    function Panel(tab, content) {
-        this.tab = tab;
-        this.content = content;
+window.onload = function() {
+    //      FUNCTIONS
+    function calculatePaperLocations() {
+        var left = $("#landscapePaper").css("left");
+        var top = $("#landscapePaper").css("top");
+        LPstyleLeft = parseInt(left);
+        LPstyleTop = parseInt(top);
+        left = $("#constructionPaper").css("left");
+        top = $("#constructionPaper").css("top");
+        CstyleLeft = parseInt(left);
+        CstyleTop = parseInt(top);
+        left = $("#lawnPaper").css("left");
+        top = $("#lawnPaper").css("top");
+        lawnStyleLeft = parseInt(left);
+        lawnStyleTop = parseInt(top);
+        if (iOS) {
+            LPstyleLeft = 500;
+            CstyleLeft = 482;
+        }
+        else if (!!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)) {
+            LPstyleLeft = $windowWidth / 2;
+            CstyleLeft = $windowWidth / 2;
+            lawnStyleLeft = $windowWidth / 2;
+        }
     }
-    // Constructor for the filter button object in the player profile page
-    // Parameters:
-    // Button: For the filter button
-    // Filter: For the function call to filter the school shown
-    function FilterButton(button, filter) {
-        this.button = button;
-        this.filter = filter;
-        this.button.addEventListener("click", function() {
-            var nameOfClass = button.className;
-            if (nameOfClass == "filterButton") {
-                nameOfClass = "filterButton-selected";
-                filter(true);
+    
+    function setPaperLocations() {
+        if (LPstyleTop < 0) {
+            LPstyleTop = 0;
+        }
+        else if (LPstyleTop > 500) {
+            LPstyleTop = 500;
+        }
+        if (LPstyleLeft < 350) {
+            LPstyleLeft = 350;
+        }
+        else if (LPstyleLeft > $windowWidth + 175) {
+            LPstyleLeft = $windowWidth + 175;
+        }
+        landscapePaper.style.left = LPstyleLeft + "px";
+        landscapePaper.style.top = LPstyleTop + "px";
+        if (CstyleTop < 0) {
+            CstyleTop = 0;
+        }
+        else if (CstyleTop > 500) {
+            CstyleTop = 500;
+        }
+        if (CstyleLeft < 0) {
+            CstyleLeft = 0;
+        }
+        else if (CstyleLeft > $windowWidth - 175) {
+            CstyleLeft = $windowWidth - 175;
+        }
+        constructionPaper.style.left = CstyleLeft + "px";
+        constructionPaper.style.top = CstyleTop + "px";
+        if (lawnStyleTop < 0) {
+            lawnStyleTop = 0;
+        }
+        else if (lawnStyleTop > 500) {
+            lawnStyleTop = 500;
+        }
+        if (lawnStyleLeft < -350) {
+            lawnStyleLeft = -350;
+        }
+        else if (lawnStyleLeft > $windowWidth - 525) {
+            lawnStyleLeft = $windowWidth - 525;
+        }
+        lawnPaper.style.left = lawnStyleLeft + "px";
+        lawnPaper.style.top = lawnStyleTop + "px";
+    }
+    
+    function scroll() {
+        if (window.pageYOffset >= 80) reduceHeader();
+        else expandHeader();
+        if (window.pageYOffset > 1400) backToTopButton.className = "backToTopButton-visible";
+        else backToTopButton.className = "backToTopButton";
+    }
+    
+    function goToTop() {
+        $('html, body').animate({scrollTop: 0}, 600);
+    }
+    
+    function reduceHeader() {
+        for (var i = 0; i < $navButtons.length; i++) {
+            $navButtons[i].className = "navButton-scroll unselectable";
+        }
+        $nav[0].className = "scroll";
+        $headerImageDiv.className = "headerImageDiv-scroll";
+    }
+    
+    function expandHeader() {
+        for (var i = 0; i < $navButtons.length; i++) {
+            $navButtons[i].className = "navButton";
+        }
+        $nav[0].className = "top";
+        $headerImageDiv.className = "headerImageDiv";
+    }
+    
+    function advanceSlider() {
+        var indexOfTop;
+        for (var i = 0; i < $sliderImages.length; i++) {
+            if ($sliderImages[i].className === "topImage") {
+                indexOfTop = i;
+                $sliderImages[i].className = "bottomImage";
             }
-            else if (nameOfClass == "filterButton-selected") {
-                nameOfClass = "filterButton";
-                filter(false);
-            }
-            button.className = nameOfClass;
-        }, false);
-    }
-            // FUNCTIONS
-    // Sets up variables on the page
-    function init() {
-        for (var i = 0; i < videoLists.length; i++) {
-            videoLists[i].style.marginLeft = "0px";
         }
-        playerProfile.style.visibility = "hidden";
-        for (var i = 0; i < tabs.length; i++) {
-            panels[i] = new Panel(tabs[i], content[i]);
-            tabs[i].addEventListener("click", changeTab, false);
-        }
+        if (indexOfTop + 1 === $sliderImages.length) $sliderImages[0].className = "topImage";
+        else $sliderImages[indexOfTop + 1].className = "topImage";
     }
-    // Highlights the current tab and shows its content
-    function changeTab(e) {
-        clearTabs();
-        clearContent();
-        e.target.parentElement.className = "tab tab-selected";
-        for (var i = 0; i < panels.length; i++) {
-            if (panels[i].tab == e.target.parentElement) {
-                panels[i].content.style.visibility = "visible";
+    
+    function rewindSlider() {
+        var indexOfTop;
+        for (var i = 0; i < $sliderImages.length; i++) {
+            if ($sliderImages[i].className === "topImage") {
+                indexOfTop = i;
+                $sliderImages[i].className = "bottomImage";
             }
         }
+        if (indexOfTop - 1 === -1) $sliderImages[$sliderImages.length -1].className = "topImage";
+        else $sliderImages[indexOfTop - 1].className = "topImage";
     }
-    // Clears all the tabs from being selected
-    function clearTabs() {
-        for (var i = 0; i < panels.length; i++) {
-            panels[i].tab.className = "tab";
-        }
-    }
-    // Clears all the content from being shown when a tab is clicked on
-    function clearContent() {
-        for (var i = 0; i < panels.length; i++) {
-            panels[i].content.style.visibility = "hidden";
-        }
-    }
-    // Starts the animation to show the sign in tab
-    function showSignIn(e) {
-        plusSign.style.visibility = "hidden";
-        signInTab.className = "signInTab-visible";
-    }
-    // Starts the animation to hide the sign in tab
-    function hideSignIn(e) {
-        signInTabOverlay.style.visibility = "hidden";
-        signInTab.className = "signInTab";
-    }
-    // Shows the login form on the sign in tab after animation
-    function showOverlay(e) {
-        if (signInTab.className == "signInTab-visible") {
-            signInTabOverlay.style.visibility = "visible";
-        }
-        else {
-            plusSign.style.visibility = "visible";
-        }
-    }
-    // Scrolls a carousel to the left
-    function scrollCarouselLeft(e) {
-        currentList = e.target.parentElement.children[2];
-        marginChange = 1;
-        scrollCarousel = setInterval(changeLeftMargin, 1);
-    }
-    // Scrolls a carousel to the right
-    function scrollCarouselRight(e) {
-        currentList = e.target.parentElement.children[2];
-        marginChange = -1;
-        scrollCarousel = setInterval(changeLeftMargin, 1);
-    }
-    // Sets the margin of the current list of videos to make them scroll
-    function changeLeftMargin() {
-        var marginLeft = parseInt(currentList.style.marginLeft);
-        if (marginLeft <= 0 && marginLeft >= -((currentList.children.length - 3) * 334)) {
-            marginLeft += marginChange;
-            if (marginLeft > 0) marginLeft = 0;
-            else if (marginLeft < -((currentList.children.length - 3) * 334)) marginLeft = -((currentList.children.length - 3) * 334); 
-            currentList.style.marginLeft = marginLeft + "px";
-        }
-    }
-    // Stops the scrolling of a carousel
-    function stopCarouselScrolling(e) {
-        clearInterval(scrollCarousel);
-    }
-    // Plays the main video
-    function playMainVideo(e) {
-        mainVideoPlayButton.style.visibility = "hidden";
-        mainVideoTitle.style.visibility = "hidden";
-        mainVideo.setAttribute("controls", "controls");
-        mainVideo.play();
-    }
-    // Opens the video pop up screen
-    function openVideo(e) {
-        if (e.target.parentElement.children[0].src != undefined) {
-            videoPlayerWrapper.style.visibility = "visible";
-            theVid.src = e.target.parentElement.children[0].src;
-            playerCard.style.visibility = "visible";
-            greyBlur.className = "greyBlur greyBlur-visible";
-        }
-    }
-    // Hides the video pop up screen
-    function hideVideo(e) {
-        videoPlayerWrapper.style.visibility = "hidden";
-        theVid.pause();
-        theVid.src = "";
-        greyBlur.className = "greyBlur";
-        if (playerProfile.style.visibility == "hidden") playerCard.style.visibility = "hidden";
-    }
-    // Opens the full player profile when profile card is clicked
-    function openProfile(e) {
-        // Close the video player
-        landingPage.style.visibility = "hidden";
-        playerProfile.style.visibility = "visible";
-        hideVideo();
-        playerCard.className = "playerCard-change";
-        // Preselect the first item on the dashboard
-        clearTabs();
-        clearContent();
-        panels[0].tab.className = "tab tab-selected";
-        panels[0].content.style.visibility = "visible";
-    }
-    // Closes the player profile and returns to home screen
-    function backToHome(e) {
-        landingPage.style.visibility = "visible";
-        playerProfile.style.visibility = "hidden";
-        playerCard.className = "playerCard";
-        playerCard.style.visibility = "hidden";
-        clearContent();
-    }
-    // Adds the current player to the coach's look list
-    function addToLookList(e) {
-        console.log("TODO: Add player to coach's look list");
-    }
-    // Functions for the filter buttons in the player profile schools panel
-    // Parameters:
-    // applyFilter: boolean true if filter needs to be applied false if it need be removed.
-    // Called when attended camps filter button is pressed
-    var campsFilter = function(applyFilter) {
-        if (applyFilter) {
-            console.log("TODO: apply filter based on attended camps");
-        }
-        else {
-            console.log("TODO: remove filter based on attended camps");
-        }
-    }
-    // Called when the offical visits filter button is pressed
-    var visitsFilter = function(applyFilter) {
-        if (applyFilter) {
-            console.log("TODO: apply filter based on offical visits");
-        }
-        else {
-            console.log("TODO: remove filter based on offical visits");
-        }
-    }
-    // Called when the offered by filter button is pressed
-    var offerFilter = function(applyFilter) {
-        if (applyFilter) {
-            console.log("TODO: apply filter based on offered by");
-        }
-        else {
-            console.log("TODO: remove filter based on offered by");
-        }
-    }
-    // Called when the signed loi filter button is pressed
-    var signedFilter = function(applyFilter) {
-        if (applyFilter) {
-            console.log("TODO: apply filter based on signed loi");
-        }
-        else {
-            console.log("TODO: remove filter based on signed loi");
-        }
-    }
-
-            // VARIABLES
-    // The plus sign on the sign in tab right side of the screen;
-    var plusSign = document.getElementById("plusSign");
-    // The sign in tab that comes out of right side of screen;
-    var signInTab = document.getElementById("signInTab");
-    // The content for the sign in tab when it is visible
-    var signInTabOverlay = document.getElementById("signInOverlay");
-    // The minus sign on the sign in tab when it is visible
-    var minusSign = document.getElementById("minusSign");
     
-    // The landing page content
-    var landingPage = document.getElementById("landingWrapper");
-    // The main video on the home screen
-    var mainVideo = document.getElementById("mainVideo");
-    // The main video play buttons
-    var mainVideoPlayButton = document.getElementById("mainVideoPlayButton");
-    // The main video title
-    var mainVideoTitle = document.getElementById("mainVideoTitle");
-    // An array of all the videos in all the carousels
-    var videos = document.getElementsByClassName("video");
+    function toggleSlideShow() {
+        playSlideShow = (playSlideShow ? false : true);
+        playOrPause.innerHTML = (playSlideShow ? "&#9616;&#9616;" : "&#9658")
+    }
     
-    // A collection of the video lists
-    var videoLists = document.getElementsByClassName("videoList");
-    // A collection of the left arrows for the video carousels
-    var leftArrows = document.getElementsByClassName("carouselLeft");
-    // A collection of the right arrows for the video carousels
-    var rightArrows = document.getElementsByClassName("carouselRight");
-    // Used to control the scrolling of the video carousel
-    var scrollCarousel = null;
-    // This variable gets set to the current video list that is being scrolled
-    var currentList = null;
-    // This variable is set to 1 or -1 for left or right scrolling respectively
-    var marginChange = null;
-
-    // The wrapper div for the pop up video player
-    var videoPlayerWrapper = document.getElementById("videoPlayerWrapper");
-    // The exit button for the video player pop up
-    var VPWexitButton = document.getElementById("VPWexitButton");
-    // The video on the video player pop up
-    var theVid = document.getElementById("theVid");
-    // The grey blur for when video player is openVideo
-    var greyBlur = document.getElementById("greyBlur");
-    // The player info card that shows basics about the player
-    var playerCard = document.getElementById("playerCard");
-    // The clickable area in the player card to take you to the profile
-    var clickableArea = document.getElementById("clickableArea");
-    // The add to look list button on the player card
-    var lookListButton = document.getElementById("lookListButton");
+    function mousedown(e) {
+        CX = e.clientX;
+        CY = e.clientY;
+        e.target.addEventListener("mousemove", mousemove, false);
+        switch (e.target.id) {
+            case "landscapePaper":
+                landscapePaper.style.zIndex = "2";
+                landscapePaper.style.cursor = "-webkit-grabbing";
+                if (lastElementToMove === "lawnPaper") {
+                    lawnPaper.style.zIndex = "1";    
+                    constructionPaper.style.zIndex = "0";
+                }
+                else if (lastElementToMove === "landscapePaper") {
+                    // do nothing
+                }
+                else {
+                    constructionPaper.style.zIndex = "1";
+                    lawnPaper.style.zIndex = "0";
+                }
+                break;
+            case "constructionPaper":
+                constructionPaper.style.zIndex = "2";
+                constructionPaper.style.cursor = "-webkit-grabbing";
+                if (lastElementToMove === "lawnPaper") {
+                    lawnPaper.style.zIndex = "1";    
+                    landscapePaper.style.zIndex = "0";
+                }
+                else if (lastElementToMove === "constructionPaper") {
+                    // do nothing
+                }
+                else {
+                    landscapePaper.style.zIndex = "1";
+                    lawnPaper.style.zIndex = "0";
+                }
+                break;
+            case "lawnPaper":
+                lawnPaper.style.zIndex = "2";
+                lawnPaper.style.cursor = "-webkit-grabbing";
+                if (lastElementToMove === "landscapePaper") {
+                    landscapePaper.style.zIndex = "1";
+                    constructionPaper.style.zIndex = "0";    
+                }
+                else if (lastElementToMove === "lawnPaper") {
+                    // do nothing
+                }
+                else {
+                    constructionPaper.style.zIndex = "1";
+                    landscapePaper.style.zIndex = "0";
+                }
+                break;
+            default:
+                break;
+        }
+        lastElementToMove = e.target.id;
+    }
     
-    // The player profile page
-    var playerProfile = document.getElementById("playerProfilePage");
-    // An array of panels
-    var panels = [];
-    // A collection of all the panel tabs
-    var tabs = document.getElementsByClassName("tab");
-    // A collection of all the panel content
-    var content = document.getElementsByClassName("panelContent");
-    // The return to home button on the player profile page
-    var backToHomeButton = document.getElementById("profileExitButton");
-
-    // Filter buttons in the school section of player profile:
-    // Attended camps button
-    var campsFilterButton = new FilterButton(document.getElementById("campsFilterButton"), campsFilter);
-    // Offical visits button
-    var visitsFilterButton = new FilterButton(document.getElementById("visitsFilterButton"), visitsFilter);
-    // Offered by button
-    var offerFilterButton = new FilterButton(document.getElementById("offerFilterButton"), offerFilter);
-    // Signed LOI button
-    var signedFilterButton = new FilterButton(document.getElementById("signedFilterButton"), signedFilter);
-
-            // EVENT LISTENERS
-    // Listeners for the sign in tab
-    plusSign.addEventListener("click", showSignIn, false);
-    signInTab.addEventListener("transitionend", showOverlay, false);
-    minusSign.addEventListener("click", hideSignIn, false);
-
-    // Listeners for the carousel scrolling
-    for (var i = 0; i < leftArrows.length; i++) {
-        leftArrows[i].addEventListener("mouseenter", scrollCarouselLeft, false);
+    function touchstart(e) {
+        CX = e.pageX;
+        CY = e.pageY;
+        e.target.addEventListener("touchmove", touchmove, false);
+        switch (e.target.id) {
+            case "landscapePaper":
+                landscapePaper.style.zIndex = "2";
+                if (lastElementToMove === "lawnPaper") {
+                    lawnPaper.style.zIndex = "1";    
+                    constructionPaper.style.zIndex = "0";
+                }
+                else if (lastElementToMove === "landscapePaper") {
+                    // do nothing
+                }
+                else {
+                    constructionPaper.style.zIndex = "1";
+                    lawnPaper.style.zIndex = "0";
+                }
+                break;
+            case "constructionPaper":
+                constructionPaper.style.zIndex = "2";
+                if (lastElementToMove === "lawnPaper") {
+                    lawnPaper.style.zIndex = "1";    
+                    landscapePaper.style.zIndex = "0";
+                }
+                else if (lastElementToMove === "constructionPaper") {
+                    // do nothing
+                }
+                else {
+                    landscapePaper.style.zIndex = "1";
+                    lawnPaper.style.zIndex = "0";
+                }
+                break;
+            case "lawnPaper":
+                lawnPaper.style.zIndex = "2";
+                if (lastElementToMove === "landscapePaper") {
+                    landscapePaper.style.zIndex = "1";
+                    constructionPaper.style.zIndex = "0";    
+                }
+                else if (lastElementToMove === "lawnPaper") {
+                    // do nothing
+                }
+                else {
+                    constructionPaper.style.zIndex = "1";
+                    landscapePaper.style.zIndex = "0";
+                }
+                break;
+            default:
+                break;
+        }
+        lastElementToMove = e.target.id;
     }
-    for (var i = 0; i < leftArrows.length; i++) {
-        leftArrows[i].addEventListener("mouseleave", stopCarouselScrolling, false);
-    }
-    for (var i = 0; i < rightArrows.length; i++) {
-        rightArrows[i].addEventListener("mouseenter", scrollCarouselRight, false);
-    }
-    for (var i = 0; i < rightArrows.length; i++) {
-        rightArrows[i].addEventListener("mouseleave", stopCarouselScrolling, false);
-    }
-
-    // Listeners for the videos and their play buttons
-    for (var i = 0; i < videos.length; i++) {
-        videos[i].addEventListener("click", openVideo, false);
-    }
-    // Listener for the main video play button
-    mainVideoPlayButton.addEventListener("click", playMainVideo, false);
-    // Listeners for hiding the video pop up window
-    // Listener for the grey blur when it is clicked on
-    greyBlur.addEventListener("click", hideVideo, false);
-    // Listener for the escape key
-    document.addEventListener("keyup", function(e) {
-        if(e.keyCode == 27) hideVideo();
-    }, false);
-    // The exit button on the video player
-    VPWexitButton.addEventListener("click", hideVideo, false);
-    // Listener for the player card click
-    clickableArea.addEventListener("click", openProfile, false);
-    // Listener for the add to look list button
-    lookListButton.addEventListener("click", addToLookList, false);
-    // Listener for the back to home button
-    backToHomeButton.addEventListener("click", backToHome, false);
     
-    init();
+    function mouseout(e) {
+        mouseup(e);
+    }
+    
+    function mouseup(e) {
+        if (e.target.className === "paper") {
+            e.target.removeEventListener("mousemove", mousemove);
+            e.target.style.cursor = "-webkit-grab";
+        }
+    }
+    
+    function mousemove(e) {
+        switch (e.target.id) {
+            case "landscapePaper":
+                LPstyleLeft += (e.clientX - CX);
+                LPstyleTop += (e.clientY - CY);
+                break;
+            case "constructionPaper":
+                CstyleLeft += (e.clientX - CX);
+                CstyleTop += (e.clientY - CY);
+                break;
+            case "lawnPaper":
+                lawnStyleLeft += (e.clientX - CX);
+                lawnStyleTop += (e.clientY - CY);
+                break;
+            default:
+                break;
+        }
+        CX = e.clientX;
+        CY = e.clientY;
+        setPaperLocations();
+    }
+    
+    function touchmove(e) {
+        e.preventDefault();
+        CstyleLeft += (e.pageX - CX);
+        CstyleTop += (e.pageY - CY);
+        CX = e.pageX;
+        CY = e.pageY;
+        setPaperLocations();
+    }
+    
+    //      VARIABLES
+    var $navButtons = $(".navButton");
+    var $nav = $(".top");
+    var $headerImageDiv = document.getElementById("companyName2");
+    var $sliderImages = $("#sliderImages").children();
+    var $windowWidth = $(window).width();
+    var leftArrow = document.getElementById("leftArrow");
+    var playOrPause = document.getElementById("playOrPause");
+    var playSlideShow = true;
+    var rightArrow = document.getElementById("rightArrow");
+    var backToTopButton = document.getElementById("backToTopButton");
+    var landscapePaper = document.getElementById("landscapePaper");
+    var LPstyleLeft;
+    var LPstyleTop;
+    var constructionPaper = document.getElementById("constructionPaper");
+    var CstyleLeft;
+    var CstyleTop;
+    var lawnPaper = document.getElementById("lawnPaper");
+    var lawnStyleLeft;
+    var lawnStyleTop;
+    var lastElementToMove = "landscapePaper";
+    var CX;
+    var CY;
+    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    var isAndroid = /Android/.test(navigator.userAgent) && !window.MSStream;
+    
+    //      EVENT LISTENERS
+    window.addEventListener("scroll", scroll, false);
+    leftArrow.addEventListener("click", rewindSlider, false);
+    playOrPause.addEventListener("click", toggleSlideShow, false);
+    rightArrow.addEventListener("click", advanceSlider, false);
+    backToTopButton.addEventListener("click", goToTop, false);
+    landscapePaper.addEventListener("mousedown", mousedown, false);
+    constructionPaper.addEventListener("mousedown", mousedown, false);
+    constructionPaper.addEventListener("touchstart", touchstart, false);;
+    lawnPaper.addEventListener("mousedown", mousedown, false);
+    landscapePaper.addEventListener("mouseup", mouseup, false);
+    constructionPaper.addEventListener("mouseup", mouseup, false);
+    lawnPaper.addEventListener("mouseup", mouseup, false);
+    landscapePaper.addEventListener("mouseout", mouseout, false);
+    constructionPaper.addEventListener("mouseout", mouseout, false);
+    lawnPaper.addEventListener("mouseout", mouseout, false);
+    
+    //      FUNCTION CALLS
+    setInterval(function() {
+        if (playSlideShow) advanceSlider();
+    }, 5000);
+    
+    calculatePaperLocations();
+    setPaperLocations();
 }
